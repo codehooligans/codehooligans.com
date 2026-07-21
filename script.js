@@ -19,4 +19,17 @@ document.addEventListener("DOMContentLoaded", function () {
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
+
+  // <details> content is hidden internally (not just display:none), so CSS
+  // alone can't force it open on desktop while defaulting closed on mobile —
+  // the open attribute has to be set based on viewport width.
+  const contactToggle = document.querySelector(".contact-toggle");
+  if (contactToggle) {
+    const desktopQuery = window.matchMedia("(min-width: 701px)");
+    const syncContactToggle = (e) => {
+      contactToggle.open = e.matches;
+    };
+    syncContactToggle(desktopQuery);
+    desktopQuery.addEventListener("change", syncContactToggle);
+  }
 });

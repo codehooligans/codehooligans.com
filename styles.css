@@ -64,12 +64,19 @@ body {
   background: var(--orange);
 }
 
-.sidebar .contact {
+.sidebar .contact-toggle {
   margin-top: 2rem;
   padding: 0 1.5rem;
+}
+
+.sidebar .contact {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+}
+
+.contact-summary {
+  display: none;
 }
 
 .main {
@@ -154,5 +161,45 @@ body {
   .banner {
     max-width: 320px;
     margin: 0 auto;
+  }
+
+  .contact-toggle {
+    text-align: center;
+  }
+
+  .contact-summary {
+    display: inline-block;
+    cursor: pointer;
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    border: 1px solid var(--orange);
+    color: var(--orange);
+    font-weight: 600;
+    font-size: 0.95rem;
+    list-style: none;
+  }
+
+  .contact-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .contact-summary::after {
+    content: " \25BE";
+  }
+
+  .contact-toggle[open] .contact-summary::after {
+    content: " \25B4";
+  }
+
+  .contact-toggle[open] .contact {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0.75rem;
+  }
+
+  .contact-toggle .contact .button {
+    width: auto;
+    flex: 1 1 auto;
   }
 }
